@@ -114,3 +114,5 @@ config.py
 
 # status
 status.json
+
+*.swp

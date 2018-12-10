@@ -1,4 +1,5 @@
 from handler.handler import MessageHandler
+import json
 
 
 class DoorMessageHandler(MessageHandler):
@@ -10,5 +11,5 @@ class DoorMessageHandler(MessageHandler):
     return 'sensors/door/default/status'
 
   def handle(self, client, userdata, message):
-    print('Door ' + str(message.payload.decode('utf-8')))
-  
+    payload = json.loads(message.payload)
+    self.storage.store('door', payload['value'])

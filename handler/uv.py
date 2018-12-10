@@ -1,4 +1,5 @@
 from handler.handler import MessageHandler
+import json
 
 
 class UvMessageHandler(MessageHandler):
@@ -11,4 +12,5 @@ class UvMessageHandler(MessageHandler):
     return "sensors/tischtennis/bricklet/uv_light/xpa/uv_light"
 
   def handle(self, client, userdata, message):
-    print('UV ' + str(message.payload))
+    payload = json.loads(message.payload)
+    self.storage.store('uv', payload['uv_light'])
